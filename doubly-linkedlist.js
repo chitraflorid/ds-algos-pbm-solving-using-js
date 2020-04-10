@@ -301,5 +301,4 @@ function mergeLists(l1, l2) {
     return sortedList;
 }
 
-console.log('merged Lists::');
 console.log(mergeLists(l1, l2));

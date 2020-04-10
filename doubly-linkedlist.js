@@ -353,3 +353,31 @@ function addTwoNumbers(l1, l2) {
 console.log( "result List after adding numbers in the given 2 linkedlists::");
 console.log(addTwoNumbers(list1, list2));
 
+function addTwoNumbers_V2(l1, l2) {
+    const sumList = new LinkedList();
+    let node1 = l1.head;
+    let node2 = l2.head;
+    let carry = 0;
+
+    while (node1 || node2) {
+        let total = carry;
+
+        if (node1 && node2) {
+            total += node1.data + node2.data;
+        } else if (node1) {
+            total += node1.data;
+        } else if (node2) {
+            total += node2.data;
+        }
+
+        const totalDigit = (total % 10);
+
+        carry = Math.floor(total / 10);
+        sumList.prependNode(totalDigit);
+
+        node1 = node1.next;
+        node2 = node2.next;
+    }
+
+    return sumList;
+}

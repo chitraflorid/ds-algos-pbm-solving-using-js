@@ -49,9 +49,10 @@ class LinkedList {
         this.printNodes();
     }
 
-    printNodes() {
+    printNodes(returnAsNumbers = false) {
         if (!this.head) {
             console.log('Empty List');
+
             return;
         }
 
@@ -59,11 +60,13 @@ class LinkedList {
         let dataString = '';
 
         while (current !== null) {
-            dataString += `${current.data} `;
+            dataString += `${current.data}${returnAsNumber ? '' : ' '}`;
             current = current.next;
         }
 
         console.log(dataString);
+
+        return dataString;
     }
 
     removeNode(data) {
@@ -302,3 +305,32 @@ function mergeLists(l1, l2) {
 }
 
 console.log(mergeLists(l1, l2));
+
+// Problem Statement
+// You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+//
+//     You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+//
+//     Example:
+//
+// Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+// Output: 7 -> 0 -> 8
+// Explanation: 342 + 465 = 807.
+
+const list1 = new LinkedList();
+const list2 = new LinkedList();
+const nodeData1 = [2, 4, 3];
+const nodeData2 = [5, 6, 4];
+
+nodeData1.forEach(item => list1.prependNode(item));
+
+nodeData2.forEach(item => list2.prependNode(item));
+
+function addTwoNumbers(l1, l2) {
+    const number1 = Number(l1.printNodes(true));
+    const number2 = Number(l2.printNodes(true));
+
+    return number1 + number2;
+}
+
+addTwoNumbers(list1, list2);

@@ -1,5 +1,3 @@
-const data = [1, 2, 3, 4, 5, 6, 7];
-
 class Node {
     constructor(data, prev = null, next = null) {
         this.data = data;
@@ -46,10 +44,10 @@ class LinkedList {
             this.head = node;
         }
 
-        this.printNodes();
+        // this.printNodes();
     }
 
-    printNodes(returnAsNumbers = false) {
+    printNodes(returnAsNumber = false) {
         if (!this.head) {
             console.log('Empty List');
 
@@ -304,7 +302,22 @@ function mergeLists(l1, l2) {
     return sortedList;
 }
 
-console.log(mergeLists(l1, l2));
+// console.log('merged Lists::');
+// console.log(mergeLists(l1, l2));
+
+// appendNode, prependNode, printNodes, removeNode, removeHead, removeTail, removeNthNodeFromEnd, findLength, findNode, reverseNodes,
+//
+//
+//     mergeLists
+//
+// 1. remove Duplicates
+// 2. delete middle node
+// 3. sum lists
+// 4. palindrome
+// 5. intersection
+// 6. loop detection
+// 7. Partition
+//
 
 // Problem Statement
 // You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
@@ -322,15 +335,21 @@ const list2 = new LinkedList();
 const nodeData1 = [2, 4, 3];
 const nodeData2 = [5, 6, 4];
 
-nodeData1.forEach(item => list1.prependNode(item));
+nodeData1.forEach(item => list1.appendNode(item));
 
-nodeData2.forEach(item => list2.prependNode(item));
+nodeData2.forEach(item => list2.appendNode(item));
 
 function addTwoNumbers(l1, l2) {
     const number1 = Number(l1.printNodes(true));
     const number2 = Number(l2.printNodes(true));
 
-    return number1 + number2;
+    const res = number1 + number2;
+    const result = new LinkedList();
+    const resultList = String(res).split('').forEach(item => result.prependNode(item));
+
+    return resultList;
 }
 
-addTwoNumbers(list1, list2);
+console.log( "result List after adding numbers in the given 2 linkedlists::");
+console.log(addTwoNumbers(list1, list2));
+

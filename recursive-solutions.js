@@ -72,3 +72,37 @@ function sumRange(n) {
 
     return n + sumRange(n - 1);
 }
+
+const tree = {
+    name: 'I A G Joseph',
+    children: [
+        {
+            name: 'Rani',
+            children: [{ name: 'Jeffy' }],
+        },
+        {
+            name: 'Chitra',
+            children: [{ name: 'Elizh' }, { name: 'Alazi' }],
+        },
+        {
+            name: 'Annie',
+            children: [{ name: 'Nithila' }, { name: 'Benita' }],
+        },
+    ],
+};
+
+// Traverses the given nested nodes and prints the names of the children of each node.
+function printChildren(tree) {
+    const { children } = tree;
+
+    if (!children) {
+        return false;
+    }
+
+    children.forEach(({ name: childName, children: kids }) => {
+        console.log('Child Name::', childName);
+        printChildren(childName, kids);
+    });
+}
+
+printChildren(tree);

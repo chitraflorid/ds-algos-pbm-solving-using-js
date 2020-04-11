@@ -64,3 +64,11 @@ function sumArray(arr) {
 
 sumArray(arr);
 
+// sum of the numbers within the given range
+function sumRange(n) {
+    if (n <= 0 ) {
+        return 0;
+    }
+
+    return n + sumRange(n - 1);
+}

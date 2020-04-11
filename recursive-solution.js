@@ -52,3 +52,15 @@ function factorial(n) {
 
 let res = factorial(5);
 console.log(res);
+
+const arr = [1, 2, 3, 4];
+
+// Sum of the elements in the given array.
+function sumArray(arr) {
+    if (!arr.length) return 0;
+
+    return arr[0] + sumArray(arr.slice(1));
+}
+
+sumArray(arr);
+

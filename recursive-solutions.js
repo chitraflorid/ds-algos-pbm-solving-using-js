@@ -106,3 +106,32 @@ function printChildren(tree) {
 }
 
 printChildren(tree);
+
+// Find a number in a sorted array
+const inputArr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+function findNumber(target, arr) {
+    const len = arr.length;
+
+    if (!arr) {
+        return false;
+    }
+
+    if (len === 1 && arr[0] === target) {
+        return true;
+    }
+
+    const medianIndex = Math.ceil(len / 2);
+    const median = arr[medianIndex];
+
+    if (target === median) {
+        return true;
+    } else if (target > median) {
+        return findNumber(target, arr.slice(medianIndex));
+    } else if(target < median) {
+        return findNumber(target, arr.slice(0, medianIndex));
+    }
+}
+
+findNumber(90, inputArr);
+

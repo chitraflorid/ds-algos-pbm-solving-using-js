@@ -82,7 +82,7 @@ const tree = {
         },
         {
             name: 'Chitra',
-            children: [{ name: 'Elizh' }, { name: 'Alazi' }],
+            children: [{ name: 'Alagan' }, { name: 'Alazi' }],
         },
         {
             name: 'Annie',

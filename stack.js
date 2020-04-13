@@ -2,10 +2,19 @@ class Stack {
     constructor() {
         this.top = 0;
         this.stack = {};
+        this.max = 0;
+        this.maxStack = [];
     }
 
     push(item) {
-        const { stack } = this;
+        const { stack, max, maxStack } = this;
+
+        if (this.top <= 0 || item >= max) {
+            maxStack.push(item);
+            this.max = item;
+        } else {
+            maxStack.push(max);
+        }
 
         stack[this.top] = item;
         this.top++;
@@ -23,8 +32,14 @@ class Stack {
         const { stack, top } = this;
         const deletedEl = stack[top];
 
+        if (this.top < 0) {
+            console.log("Stack Empty!!");
+            return false;
+        }
+
         this.top--;
         delete stack[top];
+        this.max = this.maxStack.pop();
 
         console.log('deleted el::', deletedEl);
 
@@ -54,6 +69,10 @@ class Stack {
         stack[top] = stack[this.top];
         stack[this.top] = tmp;
     }
+
+    findMax() {
+        return this.max;
+    }
 }
 
 const myStack = new Stack();
@@ -64,3 +83,8 @@ myStack.size();
 myStack.swap();
 myStack.pop();
 myStack.peek();
+myStack.findMax();
+myStack.pop();
+myStack.findMax();
+myStack.pop();
+myStack.findMax();

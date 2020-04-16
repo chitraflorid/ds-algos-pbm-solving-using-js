@@ -215,12 +215,12 @@ const inOrder = [8, 4, 10, 9, 11, 2, 5, 1, 6, 3, 7];
 
 const root = preOrder[0];
 let rootIndex = inOrder.indexOf(root);
-const leftTree = inOrder.slice(0, 7);
-const rightTree = inOrder.slice(8);
+const leftTree = inOrder.slice(0, rootIndex);
+const rightTree = inOrder.slice(rootIndex + 1);
 
-constructBinaryTree(root, leftTree, rightTree);
+constructBinaryTreeFromPreAndInOrder(root, leftTree, rightTree);
 
-function constructBinaryTree(rootEle, leftTree, rightTree) {
+function constructBinaryTreeFromPreAndInOrder(rootEle, leftTree, rightTree) {
     console.log(rootEle);
 
     if (leftTree.length > 1) {
@@ -229,7 +229,6 @@ function constructBinaryTree(rootEle, leftTree, rightTree) {
     } else {
         console.log('leftNode for root:', rootEle);
         console.log(leftTree[0]);
-
     }
 
     if (rightTree.length > 1) {
@@ -245,10 +244,4 @@ function constructBinarySubTree(tree) {
     const indexArr = tree.map(item => preOrder.indexOf(item));
     const rootEle = preOrder[Math.min(...indexArr)];
 
-    rootIndex = tree.indexOf(rootEle);
-
-    const leftTree = tree.slice(0, rootIndex);
-    const rightTree = tree.slice(rootIndex + 1);
-
-    constructBinaryTree(rootEle, leftTree, rightTree);
-}
+    rootIndex = tree.indexOf(rootEle

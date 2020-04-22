@@ -6,11 +6,9 @@ function selectionSort(startIndex = 0) {
     if (startIndex >= len) return;
 
     let minIndex = startIndex;
-    let minEle = arrInput[minIndex];
 
     for (let i = startIndex + 1; i < len; i++) {
-        if (arrInput[i] < minEle) {
-            minEle = arrInput[i];
+        if (arrInput[i] < arrInput[minIndex]) {
             minIndex = i;
         }
     }

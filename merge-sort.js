@@ -17,8 +17,10 @@ function merge(leftArr, rightArr) {
     const mergedArr = [];
     let leftPointer = 0;
     let rightPointer = 0;
+    const leftLen = leftArr.length;
+    const rightLen = rightArr.length;
 
-    while (leftPointer < leftArr.length && rightPointer < rightArr.length) {
+    while (leftPointer < leftLen && rightPointer < rightLen) {
         if (leftArr[leftPointer] < rightArr[rightPointer]) {
             mergedArr.push(leftArr[leftPointer]);
             leftPointer++;
@@ -28,12 +30,12 @@ function merge(leftArr, rightArr) {
         }
     }
 
-    while (leftPointer < leftArr.length) {
+    while (leftPointer < leftLen) {
         mergedArr.push(leftArr[leftPointer]);
         leftPointer++;
     }
 
-    while (rightPointer < rightArr.length) {
+    while (rightPointer < rightLen) {
         mergedArr.push(rightArr[rightPointer]);
         rightPointer++;
     }

@@ -47,3 +47,52 @@ function findFirstRecurringCharacter(str) {
 }
 
 findFirstRecurringCharacter(str);
+
+// Find the Longest Substring with At Most K Distinct Characters.
+function findLongestSubstringWithKUniqueChars(str, k) {
+    const strArr = str.split('');
+    const len = strArr.length;
+
+    if (len <= k) return len;
+
+    let substr = str.substring(0, k);
+    let max = k;
+    let i = k;
+    const uniqueChars = [...substr];
+
+    while (i < len) {
+        if (uniqueChars.indexOf(strArr[i]) >= 0) {
+            substr += strArr[i];
+        } else {
+            let firstIndex = 0;
+
+            for (let i = 0; i < k; i++) {
+                const char = uniqueChars[i];
+
+                firstIndex = substr.indexOf(char);
+
+                const subsubstr = substr.substring(firstIndex + 1);
+
+                if (subsubstr.indexOf(char) === -1) {
+                    uniqueChars.splice(i, 1);
+                    break;
+                }
+            }
+
+            if (uniqueChars.length < k) {
+                uniqueChars.push(strArr[i]);
+                substr = substr.substring(firstIndex + 1) + strArr[i];
+            }
+        }
+
+        if (max < substr.length) {
+            max = substr.length;
+        }
+
+        i++;
+    }
+
+    return max;
+}
+
+findLongestSubstringWithKUniqueChars('abcadcacacaca', 2);

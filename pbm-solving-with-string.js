@@ -52,29 +52,28 @@ findFirstRecurringCharacter(str);
 function findLongestSubstringWithKUniqueChars(str, k) {
     const len = str.length;
 
-    if (len <= k) return len;
+    if (len <= k) {
+        return len;
+    }
 
     let substr = '';
     let max = 0;
-    let i = 1;
-    const uniqueChars = [str.charAt[0]];
+    let i = 0;
+    const uniqueChars = [str.charAt(0)];
     let subSubstr = '';
 
     while (i < len) {
-        const char = str.charAt[i];
+        const char = str.charAt(i);
 
         if (uniqueChars.indexOf(char) >= 0) {
             substr += char;
         } else {
-            let firstIndex = 0;
-            const uniqueLen = uniqueChars.length;
-
-            if (uniqueLen >= k) {
-                for (let i = 0; i < k; i++) {
+            if (uniqueChars.length >= k) {
+                for (let i = 0; i < k - 1; i++) {
                     const char = uniqueChars[i];
+                    const firstIndex = substr.indexOf(char);
 
-                    firstIndex = substr.indexOf(char);
-                    subSubstr = substr.substring(firstIndex);
+                    subSubstr = substr.substring(firstIndex + 1);
 
                     if (subSubstr.indexOf(char) === -1) {
                         uniqueChars.splice(i, 1);
@@ -83,8 +82,10 @@ function findLongestSubstringWithKUniqueChars(str, k) {
                 }
             }
 
-            uniqueChars.push(char);
-            substr = (subSubstr || substr) + char;
+            if (uniqueChars.length < k) {
+                uniqueChars.push(char);
+                substr = (subSubstr || substr) + char;
+            }
         }
 
         if (max < substr.length) {
@@ -97,5 +98,5 @@ function findLongestSubstringWithKUniqueChars(str, k) {
     return max;
 }
 
-findLongestSubstringWithKUniqueChars('aabacbebebe', 3);
+findLongestSubstringWithKUniqueChars('abccccccccaaddddeeee', 3);
 

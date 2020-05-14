@@ -42,7 +42,7 @@ function findMaxSumOfSubArray(arr, k) {
 
     return sum;
 }
-
+// Find subarray with given sum for a given unsorted array of integers.
 function findSumSubArray(arr, sum) {
     let startI = 0;
     let currentSum = 0;

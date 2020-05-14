@@ -50,40 +50,41 @@ findFirstRecurringCharacter(str);
 
 // Find the Longest Substring with At Most K Distinct Characters.
 function findLongestSubstringWithKUniqueChars(str, k) {
-    const strArr = str.split('');
-    const len = strArr.length;
+    const len = str.length;
 
     if (len <= k) return len;
 
-    let substr = str.substring(0, k);
-    let max = k;
-    let i = k;
-    const uniqueChars = [...substr];
-    let subSubstr;
+    let substr = '';
+    let max = 0;
+    let i = 1;
+    const uniqueChars = [str.charAt[0]];
+    let subSubstr = '';
 
     while (i < len) {
-        if (uniqueChars.indexOf(strArr[i]) >= 0) {
-            substr += strArr[i];
+        const char = str.charAt[i];
+
+        if (uniqueChars.indexOf(char) >= 0) {
+            substr += char;
         } else {
             let firstIndex = 0;
+            const uniqueLen = uniqueChars.length;
 
-            for (let i = 0; i < k; i++) {
-                const char = uniqueChars[i];
+            if (uniqueLen >= k) {
+                for (let i = 0; i < k; i++) {
+                    const char = uniqueChars[i];
 
-                firstIndex = substr.indexOf(char);
+                    firstIndex = substr.indexOf(char);
+                    subSubstr = substr.substring(firstIndex);
 
-                subSubstr = substr.substring(firstIndex + 1);
-
-                if (subSubstr.indexOf(char) === -1) {
-                    uniqueChars.splice(i, 1);
-                    break;
+                    if (subSubstr.indexOf(char) === -1) {
+                        uniqueChars.splice(i, 1);
+                        break;
+                    }
                 }
             }
 
-            if (uniqueChars.length < k) {
-                uniqueChars.push(strArr[i]);
-                substr = subSubstr + strArr[i];
-            }
+            uniqueChars.push(char);
+            substr = (subSubstr || substr) + char;
         }
 
         if (max < substr.length) {
@@ -97,3 +98,4 @@ function findLongestSubstringWithKUniqueChars(str, k) {
 }
 
 findLongestSubstringWithKUniqueChars('aabacbebebe', 3);
+

@@ -59,6 +59,7 @@ function findLongestSubstringWithKUniqueChars(str, k) {
     let max = k;
     let i = k;
     const uniqueChars = [...substr];
+    let subSubstr;
 
     while (i < len) {
         if (uniqueChars.indexOf(strArr[i]) >= 0) {
@@ -71,9 +72,9 @@ function findLongestSubstringWithKUniqueChars(str, k) {
 
                 firstIndex = substr.indexOf(char);
 
-                const subsubstr = substr.substring(firstIndex + 1);
+                subSubstr = substr.substring(firstIndex + 1);
 
-                if (subsubstr.indexOf(char) === -1) {
+                if (subSubstr.indexOf(char) === -1) {
                     uniqueChars.splice(i, 1);
                     break;
                 }
@@ -81,7 +82,7 @@ function findLongestSubstringWithKUniqueChars(str, k) {
 
             if (uniqueChars.length < k) {
                 uniqueChars.push(strArr[i]);
-                substr = substr.substring(firstIndex + 1) + strArr[i];
+                substr = subSubstr + strArr[i];
             }
         }
 
@@ -95,4 +96,4 @@ function findLongestSubstringWithKUniqueChars(str, k) {
     return max;
 }
 
-findLongestSubstringWithKUniqueChars('abcadcacacaca', 2);
+findLongestSubstringWithKUniqueChars('aabacbebebe', 3);

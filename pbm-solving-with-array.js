@@ -42,3 +42,25 @@ function findMaxSumOfSubArray(arr, k) {
 
     return sum;
 }
+
+function findSumSubArray(arr, sum) {
+    let startI = 0;
+    let currentSum = 0;
+
+    for (let j = 0; j < arr.length; j++) {
+        currentSum += arr[j];
+
+        while (currentSum > sum) {
+            currentSum -= arr[startI];
+            startI++;
+        }
+
+        if (currentSum === sum) {
+            return (`${startI}, ${j}`);
+        }
+    }
+
+    return false;
+}
+
+findSumSubArray([1, 4, 20, 3, 10, 5], 33);

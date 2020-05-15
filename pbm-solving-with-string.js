@@ -1,5 +1,6 @@
 const str = 'abca';
 
+// Find the first unique character in a given string str.
 function findFirstNonRecurringCharacter(str) {
     const characterHash = {};
     const { length } = str;
@@ -99,4 +100,32 @@ function findLongestSubstringWithKUniqueChars(str, k) {
 }
 
 findLongestSubstringWithKUniqueChars('abccccccccaaddddeeee', 3);
+
+// Find the first unique character's index in a given string s.
+function firstUniqCharIndex (s) {
+    const charHash = {};
+
+    for (let i = 0; i < s.length; i++) {
+        const char = s.charAt(i);
+
+        if (!charHash[char]) {
+            charHash[char] = 1;
+        } else {
+            charHash[char]++;
+        }
+    }
+
+    for (let i = 0; i < s.length; i++) {
+        const char = s.charAt(i);
+
+        if (charHash[char] === 1) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+firstUniqCharIndex('leetcode');
+
 

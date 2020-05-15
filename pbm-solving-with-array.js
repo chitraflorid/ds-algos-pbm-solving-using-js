@@ -64,3 +64,31 @@ function findSumSubArray(arr, sum) {
 }
 
 findSumSubArray([1, 4, 20, 3, 10, 5], 33);
+
+/**
+ * Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+        const len = nums.length;
+    const median = Math.floor(len / 2);
+    const freqHash = {};
+    if (len <= 1) return nums[0];
+    
+    for (let i = 0; i < len; i++) {
+        const ele = nums[i];
+
+        if (!freqHash[ele]) {
+            freqHash[ele] = 1;
+        } else {
+            if (freqHash[ele] >= median) {
+                return ele;
+            }
+
+            freqHash[ele]++;
+        }
+    }
+
+    return 0;
+};

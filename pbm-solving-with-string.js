@@ -128,4 +128,49 @@ function firstUniqCharIndex (s) {
 
 firstUniqCharIndex('leetcode');
 
+// Given a string, sort it in decreasing order based on the frequency of characters.
+function frequencySort(s) {
+    const charHash = {};
+
+    for (let i = 0; i < s.length; i++) {
+        const char = s.charAt(i);
+
+        if (!charHash[char]) {
+            charHash[char] = 1;
+        } else {
+            charHash[char]++;
+        }
+    }
+
+    const freqSorted = new Set(Object.values(charHash).sort((val1, val2) => val2 - val1));
+
+    let res = '';
+    const freqHash = {};
+
+    const charKeys = Object.keys(charHash);
+
+    charKeys.forEach(char => {
+        const freq = charHash[char];
+
+        if (!freqHash[freq]) {
+            freqHash[freq] = [char];
+        } else {
+            freqHash[freq].push(char);
+        }
+    });
+
+    freqSorted.forEach(freq => {
+        if (freq > 1) {
+            freqHash[freq].forEach(char => {
+                res += char.repeat(freq);
+            });
+        } else {
+            res += freqHash[freq].join('');
+        }
+    });
+
+    return res;
+}
+
+frequencySort('tree');
 

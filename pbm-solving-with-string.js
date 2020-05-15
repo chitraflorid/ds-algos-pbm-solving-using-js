@@ -191,6 +191,6 @@ function groupAnagrams(arr) {
     return Object.values(sortedHash);
 }
 
-groupAnagrams1(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']);
+groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']);
 
 

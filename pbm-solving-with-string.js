@@ -174,3 +174,23 @@ function frequencySort(s) {
 
 frequencySort('tree');
 
+// Given an array of strings, group anagrams together.
+function groupAnagrams(arr) {
+    const sortedHash = {};
+
+    for (let i = 0; i < arr.length; i++) {
+        const sorted = [...arr[i]].sort().join('');
+
+        if (!sortedHash[sorted]) {
+            sortedHash[sorted] = [arr[i]];
+        } else {
+            sortedHash[sorted].push(arr[i]);
+        }
+    }
+
+    return Object.values(sortedHash);
+}
+
+groupAnagrams1(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']);
+
+

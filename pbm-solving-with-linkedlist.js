@@ -213,3 +213,74 @@ const res = [];
 
 
 const mergedList = mergeKLists1(res);
+
+// Sort a linked list
+function sortList(head) {
+    if (!head) {
+        return null;
+    }
+
+    let prev = head;
+    let current = head.next;
+    var sortedList = null;
+
+    while (current && prev) {
+        if (prev.val < current.val) {
+            sortedList = appendNode(sortedList, prev.val);
+            prev = current;
+            current = current.next;
+        } else {
+            sortedList = appendNode(sortedList, current.val);
+            const tmp = current.next;
+            prev.next = tmp;
+            current = tmp;
+        }
+    }
+
+    if (prev && !current) {
+        sortedList = appendNode(sortedList, prev.val);
+    }
+
+    return sortedList;
+}
+
+
+function appendNode(sortedList, val) {
+    const node = new ListNode(val);
+
+    if (!sortedList) {
+        sortedList = node;
+        return sortedList;
+    }
+
+    let current = sortedList;
+    let head = current;
+    let prev;
+
+    while (current) {
+        if (val < current.val) {
+            if (!prev) {
+                prev = current;
+                current = node;
+                current.next = prev;
+                head = current;
+            } else {
+                prev.next = node;
+                node.next = current;
+            }
+            break;
+        } else if (!current.next) {
+            current.next = node;
+            break;
+        }
+
+        prev = current;
+        current = current.next;
+    }
+
+    sortedList = head;
+
+    return sortedList;
+}
+
+

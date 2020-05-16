@@ -111,3 +111,105 @@ function printNodes(list) {
 
     console.log( nodes + "NULL");
 }
+
+
+function mergeKLists1(lists) {
+    let i = 0;
+    const len = lists.length;
+    let mergedLists = [];
+
+    if (lists === null || !lists.length) {
+        return null;
+    }
+
+    while (i < len) {
+        if (lists[i]) {
+            mergedLists = [...mergedLists, ...ListToArr(lists[i])];
+        }
+
+        i++;
+    }
+
+    return constructList(mergedLists.sort((a, b) => a - b));
+}
+
+function ListToArr(l) {
+    if (!l) {
+        return null;
+    }
+
+    const arrList = [];
+
+    while (l) {
+        arrList.push(l.val);
+        l = l.next;
+    }
+
+    return arrList;
+}
+
+function constructList(arr) {
+    let head = null;
+
+    arr.forEach(val => {
+        const node = new ListNode(val);
+
+        if (!head) {
+            head = node;
+        } else {
+            let curr = head;
+            let prev = curr;
+
+            while (curr) {
+                prev = curr;
+                curr = curr.next;
+            }
+
+            curr = node;
+            prev.next = curr;
+        }
+    });
+
+    return head;
+}
+
+
+/**
+ * Definition for singly-linked list.
+ */
+function ListNode(val, next) {
+    this.val = (val===undefined ? 0 : val);
+    this.next = (next===undefined ? null : next);
+}
+
+const res = [];
+
+//[[1, 4, 5], [1, 3, 4], [2, 6]]
+
+[[], [-1, 5, 11], [], [6, 10]].forEach(arr => {
+    let head = null;
+
+    arr.forEach(val => {
+        const node = new ListNode(val);
+
+        if (!head) {
+            head = node;
+        } else {
+            let curr = head;
+            let prev = curr;
+
+            while (curr) {
+                prev = curr;
+                curr = curr.next;
+            }
+
+            curr = node;
+            prev.next = curr;
+        }
+    });
+
+    res.push(head);
+});
+
+
+const mergedList = mergeKLists1(res);

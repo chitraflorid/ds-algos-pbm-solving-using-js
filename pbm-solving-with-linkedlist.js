@@ -283,4 +283,37 @@ function appendNode(sortedList, val) {
     return sortedList;
 }
 
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+function removeNthFromEnd(head, n) {
+    const nodesArr = getNodesCount(head);
+    const len = nodesArr.length;
+    const fromFirst = len - n;
+    const nodeToBeDeleted = nodesArr[fromFirst];
+
+    if (fromFirst > 0) {
+        const prev = nodesArr[fromFirst - 1];
+
+        prev.next = nodeToBeDeleted.next;
+    } else {
+        head = nodeToBeDeleted.next;
+    }
+
+    return head;
+}
+
+function getNodesCount(head) {
+    let current = head;
+    const nodesArr = [];
+
+    while (current) {
+        nodesArr.push(current);
+        current = current.next;
+    }
+
+    return nodesArr;
+}
 

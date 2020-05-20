@@ -92,3 +92,19 @@ var majorityElement = function(nums) {
 
     return 0;
 };
+
+ function findDuplicates(nums) {
+    const duplicateHash = {};
+    const res = [];
+
+    for (let i = 0; i < nums.length; i++) {
+        const num = nums[i];
+        duplicateHash[num] = !duplicateHash[num] ? 1 : ++duplicateHash[num];
+
+        if (duplicateHash[num] >= 2) {
+            res.push(num);
+            duplicateHash[num]--;
+        }
+    }
+    return res;
+}

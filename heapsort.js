@@ -6,7 +6,7 @@ function minHeap(arr) {
     const smallestIndex = Math.floor(length / 2 - 1);
 
     for (let i = smallestIndex; i >= 0; i--) {
-        minHeapify(arr,length, smallestIndex);
+        minHeapify(arr,length, i);
     }
 
     console.log( "sorted Arr::");

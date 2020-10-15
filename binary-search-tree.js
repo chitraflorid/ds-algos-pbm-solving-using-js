@@ -51,11 +51,12 @@ class BST {
      */
     insert(data) {
         const { root } = this;
-
+        const newNode = new BSTNode(data);
+        
         if (!this.root) {
-            this.root = new BSTNode(data);
+            this.root = newNode;
         } else {
-            this.updateBST(root, new BSTNode(data));
+            this.updateBST(root, newNode);
         }
     }
 

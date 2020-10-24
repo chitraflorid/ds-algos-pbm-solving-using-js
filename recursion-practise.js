@@ -42,6 +42,21 @@
     reverse += str[pos]; 
     return recursivePalindromeCheck(str, pos - 1, reverse);
   }
+
+
+// Palindrome check version II
+  function checkPalindrome(str, start = 0, end = str.length - 1) {
+    if (!str || str[start] !== str[end]) {
+      return false;
+    }
+    
+    if (start === end) {
+      return true;
+    }
+    
+    return checkPalindrome(str, start + 1, end - 1);
+  }
+  
   
   // transform array recursively
     Array.prototype.myMap = function(cb, thisArg = null) {

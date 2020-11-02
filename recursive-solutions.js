@@ -93,16 +93,17 @@ const tree = {
 
 // Traverses the given nested nodes and prints the names of the children of each node.
 function printChildren(tree) {
-    const { children } = tree;
+      const { name, children } = tree;
+      
+      console.log("Name::" + name);
 
-    if (!children) {
-        return false;
-    }
+      if (!children) {
+          return false;
+      }
 
-    children.forEach(({ name: childName, children: kids }) => {
-        console.log('Child Name::', childName);
-        printChildren(childName, kids);
-    });
+      children.forEach(child => {  
+          printChildren(child);
+      });
 }
 
 printChildren(tree);

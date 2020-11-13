@@ -1,8 +1,8 @@
 /**
- * This function is figuring out whether anagram of the given substring is present as a substring in the given parent string.
- * If its present, return the starting index of the char present in the anagram substring. Else return -1. 
+ * This function is figuring out whether anagram of the given substring is present in the given parent string.
+ * If its present, return the minimum index of the anagram substring. Else return -1. 
  * It should also work for  a single character by returning its first index if it's present more than once. else return -1.
- * Eg: parent = "actor", subStr = "cat" return 0 - as a's index is 0. for Substr = "car", return -1.
+ * Eg: parent = "actor", subStr = "cat" return 0 - as a's index is 0. for Substr = "car", return -1. for char 'a', return 0.
 **/
 function aio(parent, subStr) {
         const parentHash = {};
@@ -11,7 +11,7 @@ function aio(parent, subStr) {
         const parentLen = parent.length;
         const startIndexArr = [];
         
-	// case: parent empty or substring is empty or parent is smaller than substring length
+	// case: Parent or substring is empty or parent is smaller than substring
         if (!parent || !subStr || parentLen< subStr.length) {
           return -1;
         }

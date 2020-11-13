@@ -9,7 +9,12 @@
           return -1;
         }
 	 
-        generateParentCharHash();    
+        generateParentCharHash();
+	  
+	if (subStr.length === 1) {
+	     const ind = parentHash[subStr[0]];
+	     return ind >= 0 ? ind : -1; 
+	}
        
  	return processFirstCharIndex();
     
